@@ -1,15 +1,21 @@
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
+import { Box } from '@mui/material'
+import { ChannelDetail, Feed, Navbar, SearchFeed, VideoDetail } from './components'
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Welcome to Cloud Streamer</h1>
-      <video width="700px" height="400px" controls>
-        <source src='https://d3kdcam0njjw2f.cloudfront.net/videoplayback.mp4' type='video/mp4'/>
-      </video>
-      <h2>Ind vs Pak (2011)</h2>
-    </div>
+    <BrowserRouter>
+      <Box className="main">
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Feed />} />
+          <Route path='/video/:id' element={<VideoDetail />} />
+          <Route path='/channel/:id' element={<ChannelDetail />} />
+          <Route path='/search/:searchTerm' element={<SearchFeed />} />
+        </Routes>
+      </Box>
+    </BrowserRouter>
   )
 }
 
